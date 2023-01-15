@@ -23,8 +23,13 @@ const AgencySchema = new Schema(
         },
         phone: {
             type: String,
-            required: true
-        }
+            required: true,
+            unique: true
+        },
+        clients: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Client'
+        }]
     },
     { timestamps: true }
 );
@@ -38,7 +43,8 @@ AgencySchema.methods = {
             address2: this.address2,
             state: this.state,
             city: this.city,
-            phone: this.phone
+            phone: this.phone,
+            clients: this.clients
         };
     },
 };

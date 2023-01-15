@@ -41,3 +41,21 @@ export const UpdateClientSchema = Joi.object()
         totalBill: Joi.number().required().allow()
     })
     .unknown(false);
+
+export const CreateClientAgencySchema = Joi.object()
+    .keys({
+        name: Joi.string().required().allow(),
+        address1: Joi.string().required().allow(),
+        address2: Joi.string().optional().allow(),
+        state: Joi.string().required().allow(),
+        city: Joi.string().required().allow(),
+        phone: Joi.string().length(10).pattern(/^[0-9]+$/).required().allow(),
+        client: Joi.object()
+            .keys({
+                name: Joi.string().required().allow(),
+                email: Joi.string().email({ tlds: { allow: false } }).required().allow(),
+                phone: Joi.string().length(10).pattern(/^[0-9]+$/).required().allow(),
+                totalBill: Joi.number().required().allow()
+            })
+    })
+    .unknown(false);

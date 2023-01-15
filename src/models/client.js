@@ -2,7 +2,8 @@ import mongoose, { Schema } from "mongoose";
 const ClientSchema = new Schema(
     {
         agencyId: {
-            type: String,
+            type: Schema.Types.ObjectId,
+            ref: 'Agency',
             required: true
         },
         name: {
@@ -11,11 +12,13 @@ const ClientSchema = new Schema(
         },
         email: {
             type: String,
-            required: false
+            required: false,
+            unique: true
         },
         phone: {
             type: String,
-            required: true
+            required: true,
+            unique: true
         },
         totalBill: {
             type: Number,
