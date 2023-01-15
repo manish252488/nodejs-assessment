@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nps dev",
     "build": "nps build",
-    "start": "nps"
+    "start": "nps",
+    "pm2": "pm2 start"
   },
   "author": "manish singh",
   "license": "ISC",
