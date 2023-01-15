@@ -38,6 +38,13 @@ ClientSchema.methods = {
             phone: this.phone,
             totalBill: this.totalBill
         };
+    },
+    toTopClientFilter(v) {
+        return {
+            AgencyName: v.agencyId ? v.agencyId.name : 'NA',
+            ClientName: v._id,
+            TotalBill: v.totalBill
+        }
     }
 };
 

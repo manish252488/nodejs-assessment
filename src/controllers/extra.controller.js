@@ -29,11 +29,12 @@ export const createClientAgency = async (req, res) => {
 
 export const getAgencyTopClients = async (req, res) => {
     try {
-        Agency.find().populate({ path: 'clients' }).exec((err, data) => {
+        Client.find({ agencyId: { $ne: null } }).sort({ totalBill: 'desc' }).populate({ path: 'agencyId' }).exec((err, data) => {
             if (err) {
                 res.status(500).json(err);
             }
-            res.status(200).json(data);
+            const response = data.map(v => v.toTopClientFilter(JSON.parse(JSON.stringify(v))))
+            res.status(200).json(response);
         });
     } catch (err) {
         res.status(500).json(err);
